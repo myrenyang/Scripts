@@ -23,13 +23,14 @@ KW_VALUES = KEYWORDS_LOWERCASE ? "values" : "VALUES"
 KW_NULL = KEYWORDS_LOWERCASE ? "null" : "NULL"
 
 begin = true
+showColumnName = true
 
 def record(columns, dataRow) {
 
     if (begin) {
         OUT.append(KW_INSERT_INTO)
         if (TABLE == null) OUT.append("MY_TABLE")
-        else OUT.append(TABLE.getParent().getName()).append(".").append(TABLE.getName())
+        else OUT.append(TABLE.getName())
         OUT.append(" (")
 
         columns.eachWithIndex { column, idx ->
@@ -50,6 +51,9 @@ def record(columns, dataRow) {
         def stringValue = value == null ? KW_NULL : FORMATTER.formatValue(value, column)
         def isStringLiteral = value != null && FORMATTER.isStringLiteral(value, column)
         if (isStringLiteral && DIALECT.getDbms().isMysql()) stringValue = stringValue.replace("\\", "\\\\")
+        if (showColumnName) {
+			OUT.append("/*").append(column.name()).append("*/ ")
+		}
         OUT.append(isStringLiteral ? (STRING_PREFIX + QUOTE) : "")
           .append(stringValue ? stringValue.replace(QUOTE, QUOTE + QUOTE) : stringValue)
           .append(isStringLiteral ? QUOTE : "")
