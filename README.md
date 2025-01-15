@@ -8,7 +8,7 @@ Put the scripts to IntelliJ database data extesions, location:
 # Folder `bin/`
 Setup windows local PATH env variable so this bin folder is there.
 
-## start-au-container.bat
+## `start-au-container.bat`
 If want to run it within IntelliJ, then setup following:
 1. Go to File → Settings → Tools → External Tools
 2. Click the + button to add a new tool
