@@ -1,5 +1,4 @@
-# Scripts
-My scripts for different purpose
+This repository is about many my scripts for different purpose
 
 # Intellij Database Scripts
 Put the scripts to IntelliJ database data extesions, location:
