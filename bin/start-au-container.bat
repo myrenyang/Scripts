@@ -13,7 +13,7 @@ setlocal EnableDelayedExpansion
 IF NOT "%~1"=="" (
     set "url=%~1"
     IF /I "!url:~0,4!"=="http" (
-        SET envUrl=url
+        SET envUrl=!url!
     ) ELSE IF /I "!url!"=="-useCurrent" (
         FOR /F "tokens=* usebackq delims=" %%a IN (`findstr /i /c:"composer-eks.syd.aws.ongbst.net" src\setupProxy.js`) DO (
             FOR /F "tokens=2 delims=''" %%b IN ("%%a") DO (
