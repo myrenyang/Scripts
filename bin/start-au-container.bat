@@ -11,9 +11,10 @@ SET envUrl=
 :: Check for optional parameters
 setlocal EnableDelayedExpansion
 IF NOT "%~1"=="" (
-    IF /I "%~1:~0,4%"=="http" (
-        SET envUrl=%~1
-    ) ELSE IF /I "%~1"=="-useCurrent" (
+    set "url=%~1"
+    IF /I "!url:~0,4!"=="http" (
+        SET envUrl=url
+    ) ELSE IF /I "!url!"=="-useCurrent" (
         FOR /F "tokens=* usebackq delims=" %%a IN (`findstr /i /c:"composer-eks.syd.aws.ongbst.net" src\setupProxy.js`) DO (
             FOR /F "tokens=2 delims=''" %%b IN ("%%a") DO (
                 SET "fullUrl=%%b"
@@ -26,7 +27,7 @@ IF NOT "%~1"=="" (
         )
         echo Read src/setupProxy.js and got the environment url: !envUrl!
     ) ELSE (
-        echo Invalid parameter. Must start with "http" or be "-useCurrent"
+        echo Invalid parameter "!url!". Must start with "http" or be "-useCurrent"
         exit /b 1
     )
 )
