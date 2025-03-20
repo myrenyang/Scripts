@@ -1,4 +1,5 @@
 :: This script will checkout latest master branch of mfe-wealth-au-container and build it.
+:: Require: npm@9.9.0 node@v16.20.2  yarn@v1.22.19
 :: Example run: build-au-container
 
 @echo off
