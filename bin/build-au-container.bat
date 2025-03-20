@@ -1,3 +1,4 @@
+:: This script will checkout latest master branch of mfe-wealth-au-container and build it.
 :: Example run: build-au-container
 
 @echo off
